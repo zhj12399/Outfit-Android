@@ -33,7 +33,7 @@
         app:layout_constraintVertical_bias="0.275" />
 
     <Button
-        android:id="@+id/button_Goin"
+        android:id="@+id/button_go_in"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="开启"

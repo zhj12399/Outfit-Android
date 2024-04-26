@@ -15,7 +15,7 @@ class WelcomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_welcome)
-        val button_Goin = findViewById<Button>(R.id.button_Goin)
+        var button_goin = findViewById<Button>(R.id.button_go_in)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -28,7 +28,7 @@ class WelcomeActivity : AppCompatActivity() {
 //            go to home
         }
 
-        button_Goin.setOnClickListener{
+        button_goin.setOnClickListener{
             val intent = Intent(this, LoginActivity::class.java)
             this.startActivity(intent)
         }
