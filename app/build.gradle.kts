@@ -10,13 +10,15 @@ android {
     defaultConfig {
         applicationId = "cn.zhj12399.outfit"
         minSdk = 30
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    buildFeatures {
+        viewBinding=true
+    }
     buildTypes {
         release {
             isMinifyEnabled = false
