@@ -24,12 +24,15 @@ class WelcomeActivity : AppCompatActivity() {
         }
 
 
-        if (isLogin()){
+        if (isLogin()) {
 //            go to home
         }
 
-        button_goin.setOnClickListener{
-            val intent = Intent(this, LoginActivity::class.java)
+        button_goin.setOnClickListener {
+            val intent = Intent(
+                this,
+                LoginActivity::class.java
+            ).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
             this.startActivity(intent)
         }
     }
