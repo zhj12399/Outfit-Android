@@ -9,13 +9,13 @@
               <type value="RUNNING_DEVICE_TARGET" />
               <deviceKey>
                 <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\zhj72\.android\avd\Pixel_8_API_30.avd" />
+                  <type value="SERIAL_NUMBER" />
+                  <value value="adb-e68f0029-TACWpq._adb-tls-connect._tcp" />
                 </Key>
               </deviceKey>
             </Target>
           </runningDeviceTargetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-04-26T07:04:43.316454300Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-04-27T14:50:02.514348200Z" />
         </State>
       </entry>
     </value>

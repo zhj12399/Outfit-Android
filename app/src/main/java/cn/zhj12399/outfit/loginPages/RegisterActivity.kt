@@ -3,7 +3,6 @@ package cn.zhj12399.outfit.loginPages
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -14,7 +13,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 import cn.zhj12399.outfit.entity.BaseURL
+import cn.zhj12399.outfit.entity.People
 import cn.zhj12399.outfit.webService.PeopleService
+import kotlin.concurrent.thread
 
 class RegisterActivity : AppCompatActivity() {
     lateinit var retrofit: Retrofit
@@ -46,7 +47,14 @@ class RegisterActivity : AppCompatActivity() {
             val password_two = edittext_password_two.text.toString()
 
             if (user_name.isNotEmpty() && password_one.isNotEmpty() && password_two.isNotEmpty()) {
+                if (password_one == password_two) {
+                    thread {
+                        val result = service.addPeople(People(user_name, password_one))
 
+                    }
+                } else {
+                    Toast.makeText(this, "两次输入密码不一致", Toast.LENGTH_SHORT).show()
+                }
             } else {
                 Toast.makeText(this, "账户密码不能为空", Toast.LENGTH_SHORT).show()
             }
