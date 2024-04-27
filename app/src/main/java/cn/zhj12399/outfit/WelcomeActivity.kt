@@ -15,7 +15,7 @@ class WelcomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_welcome)
-        var button_goin = findViewById<Button>(R.id.button_go_in)
+        val button_goin = findViewById<Button>(R.id.button_go_in)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
