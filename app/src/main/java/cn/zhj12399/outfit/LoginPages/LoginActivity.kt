@@ -14,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat
 import cn.zhj12399.outfit.Entity.BaseURL
 import cn.zhj12399.outfit.R
 import cn.zhj12399.outfit.Entity.People
+import cn.zhj12399.outfit.HomePages.CenterActivity
 import cn.zhj12399.outfit.WebService.PeopleService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -62,9 +63,9 @@ class LoginActivity : AppCompatActivity() {
 
                             Looper.prepare()
                             Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show()
-//                            val intent = Intent(this, CenterActivity::class.java)
-//                                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-//                            startActivity(intent)
+                            val intent = Intent(this, CenterActivity::class.java)
+                                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                            startActivity(intent)
                             Looper.loop()
                         } else {
                             Looper.prepare()

@@ -1,6 +1,7 @@
 package cn.zhj12399.outfit.LoginPages
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Looper
 import android.widget.Button
@@ -16,6 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 import cn.zhj12399.outfit.Entity.BaseURL
 import cn.zhj12399.outfit.Entity.People
+import cn.zhj12399.outfit.HomePages.CenterActivity
 import cn.zhj12399.outfit.WebService.PeopleService
 import java.io.IOException
 import kotlin.concurrent.thread
@@ -65,9 +67,9 @@ class RegisterActivity : AppCompatActivity() {
 
                             Looper.prepare()
                             Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show()
-//                            val intent = Intent(this, CenterActivity::class.java)
-//                                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-//                            startActivity(intent)
+                            val intent = Intent(this, CenterActivity::class.java)
+                                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                            startActivity(intent)
                             Looper.loop()
                         }catch (e: IOException) {
                             Looper.prepare()
