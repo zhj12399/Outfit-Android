@@ -1,5 +1,6 @@
 package cn.zhj12399.outfit.LoginPages
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Looper
@@ -10,10 +11,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import cn.zhj12399.outfit.Entity.BaseURL
 import cn.zhj12399.outfit.R
 import cn.zhj12399.outfit.Entity.People
 import cn.zhj12399.outfit.WebService.PeopleService
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
 import kotlin.concurrent.thread
 
@@ -36,6 +39,11 @@ class LoginActivity : AppCompatActivity() {
             insets
         }
 
+        retrofit = Retrofit.Builder().baseUrl(BaseURL.base_url)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        service = retrofit.create(PeopleService::class.java)
+
         button_login.setOnClickListener {
             val user_name = edittext_username.text.toString()
             val user_password = edittext_password.text.toString()
@@ -44,30 +52,25 @@ class LoginActivity : AppCompatActivity() {
                     val result = service.judgePassword(People(user_name, user_password))
                     try {
                         val response = result.execute()
-                        Looper.prepare()
-                        Toast.makeText(this, response.body()!!.string(), Toast.LENGTH_SHORT).show()
-                        Looper.loop()
-//                        if (response.body()) {
-//                            val PREF_FILE_NAME = "user_info"
-//                            val USER_NAME = "user_name"
-//                            val pref = getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE)
-//                            val editor = pref.edit()
-//                            editor.putString(USER_NAME, user_name)
-//                            editor.apply()
-//
-//                            Looper.prepare()
-//                            Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show()
-////                            val intent = Intent(this, CenterActivity::class.java)
-////                                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-////                            startActivity(intent)
-//                            Looper.loop()
-//                        } else {
-//                            Looper.prepare()
-//                            Toast.makeText(this, "账户或密码错误", Toast.LENGTH_LONG).show()
-//                            Looper.loop()
-//
-//                            edittext_password.setText("")
-//                        }
+                        if (response.body()?.string().toBoolean()) {
+                            val PREF_FILE_NAME = "user_info"
+                            val USER_NAME = "user_name"
+                            val pref = getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE)
+                            val editor = pref.edit()
+                            editor.putString(USER_NAME, user_name)
+                            editor.apply()
+
+                            Looper.prepare()
+                            Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show()
+//                            val intent = Intent(this, CenterActivity::class.java)
+//                                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+//                            startActivity(intent)
+                            Looper.loop()
+                        } else {
+                            Looper.prepare()
+                            Toast.makeText(this, "账户或密码错误", Toast.LENGTH_LONG).show()
+                            Looper.loop()
+                        }
                     } catch (e: IOException) {
                         Looper.prepare()
                         Toast.makeText(this, "网络无法连接", Toast.LENGTH_LONG).show()
