@@ -14,10 +14,10 @@
         android:theme="@style/Theme.Outfit"
         tools:targetApi="31">
         <activity
-            android:name=".loginPages.RegisterActivity"
+            android:name=".LoginPages.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".loginPages.LoginActivity"
+            android:name=".LoginPages.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".WelcomeActivity"

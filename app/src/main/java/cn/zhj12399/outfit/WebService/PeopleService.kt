@@ -1,6 +1,6 @@
-package cn.zhj12399.outfit.webService
+package cn.zhj12399.outfit.WebService
 
-import cn.zhj12399.outfit.entity.People
+import cn.zhj12399.outfit.Entity.People
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Body

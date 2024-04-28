@@ -1,6 +1,5 @@
-package cn.zhj12399.outfit.loginPages
+package cn.zhj12399.outfit.LoginPages
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Looper
@@ -12,8 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import cn.zhj12399.outfit.R
-import cn.zhj12399.outfit.entity.People
-import cn.zhj12399.outfit.webService.PeopleService
+import cn.zhj12399.outfit.Entity.People
+import cn.zhj12399.outfit.WebService.PeopleService
 import retrofit2.Retrofit
 import java.io.IOException
 import kotlin.concurrent.thread
