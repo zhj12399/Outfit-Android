@@ -1,6 +1,9 @@
 package cn.zhj12399.outfit.loginPages
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.os.Looper
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -15,6 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import cn.zhj12399.outfit.entity.BaseURL
 import cn.zhj12399.outfit.entity.People
 import cn.zhj12399.outfit.webService.PeopleService
+import java.io.IOException
 import kotlin.concurrent.thread
 
 class RegisterActivity : AppCompatActivity() {
@@ -50,7 +54,27 @@ class RegisterActivity : AppCompatActivity() {
                 if (password_one == password_two) {
                     thread {
                         val result = service.addPeople(People(user_name, password_one))
+                        try {
+                            result.execute()
 
+                            val PREF_FILE_NAME = "user_info"
+                            val USER_NAME = "user_name"
+                            val pref = getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE)
+                            val editor = pref.edit()
+                            editor.putString(USER_NAME, user_name)
+                            editor.apply()
+
+                            Looper.prepare()
+                            Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show()
+//                            val intent = Intent(this, CenterActivity::class.java)
+//                                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+//                            startActivity(intent)
+                            Looper.loop()
+                        }catch (e: IOException) {
+                            Looper.prepare()
+                            Toast.makeText(this, "网络无法连接", Toast.LENGTH_LONG).show()
+                            Looper.loop()
+                        }
                     }
                 } else {
                     Toast.makeText(this, "两次输入密码不一致", Toast.LENGTH_SHORT).show()
