@@ -61,21 +61,22 @@ class LoginActivity : AppCompatActivity() {
                             editor.putString(USER_NAME, user_name)
                             editor.apply()
 
-                            Looper.prepare()
-                            Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show()
-                            val intent = Intent(this, CenterActivity::class.java)
-                                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-                            startActivity(intent)
-                            Looper.loop()
+                            runOnUiThread {
+                                Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show()
+                                val intent = Intent(this, CenterActivity::class.java)
+                                    .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                                startActivity(intent)
+                            }
                         } else {
-                            Looper.prepare()
-                            Toast.makeText(this, "账户或密码错误", Toast.LENGTH_LONG).show()
-                            Looper.loop()
+                            runOnUiThread {
+                                Toast.makeText(this, "账户或密码错误", Toast.LENGTH_LONG).show()
+                                edittext_password.setText("")
+                            }
                         }
                     } catch (e: IOException) {
-                        Looper.prepare()
-                        Toast.makeText(this, "网络无法连接", Toast.LENGTH_LONG).show()
-                        Looper.loop()
+                        runOnUiThread {
+                            Toast.makeText(this, "网络无法连接", Toast.LENGTH_LONG).show()
+                        }
                     }
                 }
             } else {

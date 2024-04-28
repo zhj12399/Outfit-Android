@@ -65,16 +65,16 @@ class RegisterActivity : AppCompatActivity() {
                             editor.putString(USER_NAME, user_name)
                             editor.apply()
 
-                            Looper.prepare()
-                            Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show()
-                            val intent = Intent(this, CenterActivity::class.java)
-                                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-                            startActivity(intent)
-                            Looper.loop()
+                            runOnUiThread {
+                                Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show()
+                                val intent = Intent(this, CenterActivity::class.java)
+                                    .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                                startActivity(intent)
+                            }
                         }catch (e: IOException) {
-                            Looper.prepare()
-                            Toast.makeText(this, "网络无法连接", Toast.LENGTH_LONG).show()
-                            Looper.loop()
+                            runOnUiThread {
+                                Toast.makeText(this, "网络无法连接", Toast.LENGTH_LONG).show()
+                            }
                         }
                     }
                 } else {

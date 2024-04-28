@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import cn.zhj12399.outfit.HomePages.CenterActivity
 import cn.zhj12399.outfit.LoginPages.LoginActivity
 
 class WelcomeActivity : AppCompatActivity() {
@@ -23,9 +24,12 @@ class WelcomeActivity : AppCompatActivity() {
             insets
         }
 
-
-        if (isLogin()) {
-//            go to home
+        if (!isLogin()) {
+            val intent = Intent(
+                this,
+                CenterActivity::class.java
+            ).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+            this.startActivity(intent)
         }
 
         button_goin.setOnClickListener {
@@ -42,7 +46,6 @@ class WelcomeActivity : AppCompatActivity() {
         val USER_NAME = "user_name"
 
         val pref = getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE)
-        pref.getString(USER_NAME, "")
-        return false
+        return pref.getString(USER_NAME, "").toString().isNullOrEmpty()
     }
 }
