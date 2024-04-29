@@ -19,7 +19,6 @@ class CenterFragment4 : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_center4, container, false)
         val textview_username = root.findViewById<TextView>(R.id.textview_username)
         val button_log_off = root.findViewById<Button>(R.id.button_log_off)
