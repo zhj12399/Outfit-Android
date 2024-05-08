@@ -14,8 +14,6 @@ import cn.zhj12399.outfit.WebService.OutfitService
 import com.alibaba.fastjson.JSON
 import com.alibaba.fastjson.JSONArray
 import com.alibaba.fastjson.JSONObject
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
@@ -54,12 +52,27 @@ class CenterFragment1 : Fragment() {
             val result = service.getLastOutfit(user_name)
             try {
                 val response = result.execute()
-//                val last_outfit: JSONObject =
-//                    JSON.parseArray(response.body()!!.string()) as JSONObject
-//                val last_time_str = last_outfit.getInteger("year").toString()
-//                textview_last_date?.setText("上次的记录是：$last_time_str")
+                val last_outfit: JSONObject =
+                    JSON.parse(response.body()?.string()) as JSONObject
+                val last_time_str = last_outfit.getInteger("year")
+                    .toString() + "-" + last_outfit.getInteger("month")
+                    .toString() + "-" + last_outfit.getInteger("day").toString()
+
                 activity?.runOnUiThread {
-                    textview_last_date?.setText(response.body()?.string())
+                    textview_last_date?.setText("上次的记录是：$last_time_str")
+                    textview_last_t?.setText(
+                        "上次记录的温度是：" + last_outfit.getInteger("t").toString() + "摄氏度"
+                    )
+                    textview_last_1?.setText(
+                        "上身：" + last_outfit.getString("up") + "   下身：" + last_outfit.getString(
+                            "down"
+                        )
+                    )
+                    textview_last_2?.setText(
+                        "鞋子：" + last_outfit.getString("shoes") + "   首饰：" + last_outfit.getString(
+                            "hands"
+                        )
+                    )
                 }
             } catch (e: IOException) {
                 requireActivity().runOnUiThread {
@@ -67,7 +80,6 @@ class CenterFragment1 : Fragment() {
                 }
             }
         }
-
         return root
     }
 }
