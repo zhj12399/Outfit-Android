@@ -109,7 +109,6 @@
             android:layout_width="375dp"
             android:layout_height="54dp"
             android:background="#1A000000"
-            android:spinnerMode="dialog"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
