@@ -1,20 +1,29 @@
 package cn.zhj12399.outfit.HomePages
 
 import android.app.DatePickerDialog
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
 import android.widget.TextView
+import cn.zhj12399.outfit.Entity.BaseURL
 import cn.zhj12399.outfit.R
+import cn.zhj12399.outfit.WebService.OutfitService
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.Date
 import java.util.Stack
+import kotlin.concurrent.thread
 
 class CenterFragment3 : Fragment() {
+    lateinit var retrofit: Retrofit
+    lateinit var service: OutfitService
 
     private val stringUp = arrayOf("棉袄", "夹克", "卫衣", "短袖")
     private val stringDown = arrayOf("棉裤", "秋裤", "加绒", "单裤", "短裤")
@@ -85,12 +94,87 @@ class CenterFragment3 : Fragment() {
         var select_shoes_num = 0
         var select_hands_num = 0
 
-        var select_brand = stringUp[select_up_num]
-        var select_down = stringUp[select_down_num]
-        var select_shoes = stringUp[select_shoes_num]
-        var select_hands = stringUp[select_hands_num]
+        spinner_up.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                select_up_num = position
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+        }
+        spinner_down.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                select_down_num = position
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+        }
+        spinner_hands.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                select_hands_num = position
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+        }
+        spinner_shoes.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                select_shoes_num = position
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+        }
+
+        val PREF_FILE_NAME = "user_info"
+        val USER_NAME = "user_name"
+        val pref = getActivity()?.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE)
+        val user_name = pref?.getString(USER_NAME, "").toString()
+
+        retrofit = Retrofit.Builder().baseUrl(BaseURL.base_url)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        service = retrofit.create(OutfitService::class.java)
 
 
+        val button_add_record = root.findViewById<Button>(R.id.button_add_record)
+        button_add_record.setOnClickListener{
+            var select_up = stringUp[select_up_num]
+            var select_down = stringUp[select_down_num]
+            var select_shoes = stringUp[select_shoes_num]
+            var select_hands = stringUp[select_hands_num]
+            val msg =
+                select_year.toString() + "." + (select_month + 1).toString() + "." + select_date.toString()+ "\n" +
+                        "您选择了" + select_up + "的一杯" + "mg"
+            thread {
+
+            }
+        }
         return root
     }
 }

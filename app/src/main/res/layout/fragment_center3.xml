@@ -66,6 +66,20 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.23" />
 
+        <SeekBar
+            android:id="@+id/seekBar"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="268dp"
+            android:layout_height="49dp"
+            android:max="40"
+            android:min="-30"
+            android:progress="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.32" />
+
         <Spinner
             android:id="@+id/spinner_up"
             android:layout_width="375dp"
@@ -76,7 +90,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.323" />
+            app:layout_constraintVertical_bias="0.44" />
 
         <Spinner
             android:id="@+id/spinner_down"
@@ -89,7 +103,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.451" />
+            app:layout_constraintVertical_bias="0.56" />
 
         <Spinner
             android:id="@+id/spinner_shoes"
@@ -102,7 +116,7 @@
             app:layout_constraintHorizontal_bias="0.472"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.58" />
+            app:layout_constraintVertical_bias="0.68" />
 
         <Spinner
             android:id="@+id/spinner_hands"
@@ -115,7 +129,7 @@
             app:layout_constraintHorizontal_bias="0.444"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.698" />
+            app:layout_constraintVertical_bias="0.8" />
 
         <Button
             android:id="@+id/button_add_record"
@@ -127,7 +141,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.9" />
+            app:layout_constraintVertical_bias="0.92" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
