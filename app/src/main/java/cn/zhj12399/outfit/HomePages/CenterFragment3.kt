@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.SeekBar
 import android.widget.Spinner
 import android.widget.TextView
 import cn.zhj12399.outfit.Entity.BaseURL
@@ -89,6 +90,25 @@ class CenterFragment3 : Fragment() {
             ).show()
         }
 
+        var select_t = 15
+        val seekbar_t = root.findViewById<SeekBar>(R.id.seekBar)
+        val textview_t = root.findViewById<TextView>(R.id.textview_t)
+//        textview_t?.setText("温度：9")
+        seekbar_t.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+//                textview_t?.setText("温度：$progress")
+//                select_t = progress
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                TODO("Not yet implemented")
+            }
+        })
+
         var select_up_num = 0
         var select_down_num = 0
         var select_shoes_num = 0
@@ -163,13 +183,13 @@ class CenterFragment3 : Fragment() {
 
 
         val button_add_record = root.findViewById<Button>(R.id.button_add_record)
-        button_add_record.setOnClickListener{
+        button_add_record.setOnClickListener {
             var select_up = stringUp[select_up_num]
             var select_down = stringUp[select_down_num]
             var select_shoes = stringUp[select_shoes_num]
             var select_hands = stringUp[select_hands_num]
             val msg =
-                select_year.toString() + "." + (select_month + 1).toString() + "." + select_date.toString()+ "\n" +
+                select_year.toString() + "." + (select_month + 1).toString() + "." + select_date.toString() + "\n" +
                         "您选择了" + select_up + "的一杯" + "mg"
             thread {
 

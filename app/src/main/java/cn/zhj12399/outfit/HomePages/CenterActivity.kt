@@ -13,9 +13,9 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class CenterActivity : AppCompatActivity() {
     val fragment_list = mutableListOf<Fragment>(
-        CenterFragment1(), CenterFragment2(), CenterFragment3(), CenterFragment4()
+        CenterFragment1(), CenterFragment3(), CenterFragment4()
     )
-    val title_list = mutableListOf<String>("今日", "记录", "增添", "我")
+    val title_list = mutableListOf<String>("今日", "增添", "我")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
